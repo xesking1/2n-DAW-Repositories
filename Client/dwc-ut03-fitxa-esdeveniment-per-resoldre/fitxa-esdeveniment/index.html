@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ca">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fitxa d’esdeveniment</title>
+    <link rel="stylesheet" href="estils.css">
+    <script defer src="suport.js"></script>
+    <script defer src="logica.js"></script>
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>Fitxa d’esdeveniment</h1>
+        <p>Una fitxa, un calendari i una preparació de materials.</p>
+        <section id="camps" aria-label="Dades"><label>Nom<input id="nom"
+                    value="  Jornada oberta  "></label><label>Aforament<input id="aforament" type="text"
+                    inputmode="numeric" value="20"></label><label>Assistents previstos<input id="assistents" type="text"
+                    inputmode="numeric" value="17"></label><label>Inici<input id="inici" type="date"
+                    value="2026-10-23"></label><label>Final<input id="final" type="date" value="2026-10-26"></label>
+        </section>
+        <div class="accions"><button id="base" type="button">Comprovar fase A</button><button id="calcular"
+                type="button">Calcular calendari</button><button id="guardar" type="button">Guardar</button><button
+                id="recuperar" type="button">Recuperar</button><button id="esborrar" type="button">Esborrar el
+                desat</button><button id="obrir" type="button">Obrir resum</button></div>
+        <p id="missatge" role="status"></p>
+        <p id="avis" role="status"></p>
+        <section aria-label="Resultat">
+            <h2 id="titol">Resultat pendent</h2>
+            <p id="estat"></p>
+            <p id="resum"></p>
+            <ol id="calendari"></ol>
+        </section>
+    </main>
+</body>
+
+</html>
