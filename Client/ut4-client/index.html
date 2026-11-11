@@ -1,0 +1,41 @@
+<!doctype html>
+
+<head>
+    <html lang="ca">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>UT4 - Préstecs de material</title>
+    <link rel="stylesheet" href="estils.css">
+</head>
+<header>
+    <p>DWC - UT4</p>
+    <h1>Préstecs de material</h1>
+    <p>Completa una fase cada vegada. Els botons executen exemples amb dades noves: no desen préstecs.</p><a
+        href="enunciat.md">Enunciat i contractes</a> - <a href="mapa-funcions.md">Mapa de funcions</a>
+</header>
+<main>
+    <section>
+        <h2>Entrades per a A i F</h2><label>Material <input id="materialId" value="MAT-001"></label><label>Quantitat
+            <input id="quantitat" value="2"></label><label>Dies <input id="dies" value="3"></label><label>Política
+            <select id="politica">
+                <option>ordinari</option>
+                <option>aula</option>
+                <option>projecte</option>
+            </select></label>
+        <p>B, C, D i E usen casos fixos descrits a l’enunciat. Altres proves: Console amb taller.</p>
+    </section>
+    <section>
+        <h2>Comprova la fase</h2>
+        <nav><button data-fase="A">Fase A</button><button data-fase="B">Fase B</button><button data-fase="C">Fase
+                C</button><button data-fase="D">Fase D</button><button data-fase="E">Fase E</button><button
+                data-fase="F">Fase F</button><button data-fase="G">Fase G</button></nav>
+        <pre id="sortida" aria-live="polite">Tria una fase. Un missatge «Pendent» és normal fins que la completis.</pre>
+    </section>
+    <details>
+        <summary>Catàleg inicial proporcionat</summary>
+        <pre id="dades"></pre>
+    </details>
+</main>
+<script type="module" src="app.js"></script>
+
+</html>
