@@ -1,1 +1,53 @@
 body{font:18px/1.5 system-ui,sans-serif;background:#f3f6f2;color:#233127;margin:0}main{max-width:1000px;margin:2rem auto;padding:2rem;background:white;border-radius:12px}h1,h2{color:#125b18}#camps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}label{display:flex;flex-direction:column}input,button{font:inherit;padding:.5rem}button{cursor:pointer;border:1px solid #125b18;border-radius:5px;background:#edf5eb}.accions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}.error{color:#a11}.complet{background:#fee}.poques{background:#fff0c0}.disponible{background:#e3f5df}#estat{padding:.5rem}li{padding:.25rem}input:focus,button:focus{outline:3px solid #467fca}
+
+
+.container {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-rows: repeat(7, 150px); */
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 1rem;
+    background-color: dodgerblue;
+    padding: 10px;
+}
+
+ .container > div {
+    border: 1px solid black;
+    padding: 10px;
+    font-size: larger;
+    background-color: #f1f1f1;
+
+    flex: 0 1 30%;
+}
+
+.container > div {
+    
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+    body {
+        background-color: black;
+    }
+}
+
+
+#d1 {
+}
+#d2 {
+}
+#d3 {
+    
+}
+#d4 {
+}
+#d5 {
+}
+#d6 {
+}
+#d7 {
+}
+#d8 {
+}
+#d9 {
+} 
