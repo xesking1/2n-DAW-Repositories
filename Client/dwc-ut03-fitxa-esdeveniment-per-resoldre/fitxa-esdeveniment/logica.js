@@ -36,5 +36,44 @@ function calculaBase(dades) {
 // FASE B: una còpia de la data evita modificar l’inici.
 function calculaFitxa(dades) {
   // FASE B. Usa calculaBase i dataUTC. Retorna {base, inici, final, dies, capsSetmana, laborables, acreditacions, paquets, jornades}. Cada jornada té data i tipus.
-  throw new Error("Pendent: calculaFitxa");
+  const base = calculaBase(dades);
+  const inici = dataUTC(dades.inici);
+  const final = dataUTC(dades.final);
+  if (final < inici) {
+    throw new Error("La data final no pot ser anterior a la data d'inici.");
+  }
+
+  const dies = Math.round((final - inici) / 86400000) + 1;
+  if (dies < 1 || dies > 7) {
+    throw new Error("La durada de l'esdeveniment ha de ser d'entre 1 i 7 dies.");
+  }
+
+  const jornades = [];
+  let laborables = 0;
+  let capsSetmana = 0;
+  const cursor = new Date(inici.getTime());
+
+  for (let i = 0; i < dies; i++) {
+    const diaSetmana = cursor.getDay();
+    const esCapSetmana = (diaSetmana === 0 || diaSetmana === 6);
+    const tipus = esCapSetmana ? "Cap de setmana" : "Laborable";
+
+    if (esCapSetmana) {
+      capsSetmana++;
+    } else {
+      laborables++;
+    }
+
+    jornades.push({
+      data: cursor.toISOString().slice(0, 10),
+      tipus
+    });
+
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
+  }
+
+  const acreditacions = base.assistents * dies;
+  const paquets = base.paquetsDia * dies;
+
+  return { base, inici, final, dies, capsSetmana, laborables, acreditacions, paquets, jornades }
 }

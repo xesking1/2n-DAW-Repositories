@@ -1,0 +1,223 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+
+    /* Min-height amb el 100% de l'alçada de la pantalla per no tenir una pàgina més curta que l'alçada
+            de la pantalla */
+    min-height: 100vh;
+
+    /* Complementa al min-height per repartir el contingut per tota la pàgina */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+/* 1. Header - Flexbox */
+
+header {
+    /* Dimensions */
+    width: 100%;
+    /* Min-height per deixar que s'expandeixi verticalment en cas d'apilar-se el contingut */
+    min-height: 80px;
+
+    /* Alineació */
+    /* Dividint el header en dues parts (logo i botons), els podem distribuir/moure usant flex.
+            En aquest cas, està sel·leccionat el flex-direction: row; per defecte, així que l'eix principal
+            és l'horitzontal. Per a poder posar cada part a una punta, usam justify-content, que manipula
+            el contingut del header en quant a l'eix principal. Amb l'opció space-between, el contingut es
+            reparteix al llarg del contenidor quedant els items del principi i final aferrats als extrems.
+            align-items, manipula l'eix secundari, el vertical si és row, i usam center per centrar el contingut
+            en aquest eix.
+            flex-wrap, per altra part, canvia el comportament del contingut si el contenidor pare deixa de poder
+            contenir-lo en una fila. L'opció wrap deixa que el bloc de botons es canvii de fila si desborda. */
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    /* Detalls */
+    padding: 0 20px;
+    background-color: #222;
+
+    position: relative;
+}
+
+header img {
+    /* Mida d'el logo */
+    width: 150px;
+    height: auto;
+
+    align-self: flex-end;
+    flex-shrink: 0;
+
+    display: block;
+    object-fit: contain;
+}
+
+nav {
+    /* Alineació */
+    /* Usant la mateixa lògica que al header, wrap deixa que els botons individualment s'apilin si desborden
+            del seu contenidor */
+    display: flex;
+    flex-wrap: wrap;
+    
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    min-width: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 10px;
+
+    background-color: #333;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #222;
+}
+
+nav a.active {
+    background-color: white;
+    color: #222;
+}
+
+
+/* 2. Profile section - Float */
+
+.profile {
+    /* Dimensions */
+    height: 300px;
+    width: 100%;
+
+    padding: 20px;
+    background-color: #f2f2f2;
+
+    overflow: auto;
+}
+
+.profile img {
+    /* Mida de la foto de perfil */
+    width: 150px;
+    height: 150px;
+
+    /* Float coloca l'element al costat dret o esquerre del seu contenidor, en aquest
+    cas a l'esquerra amb l'opció left. També, treu a la imatge del fluxe normal del
+    document i d'aquesta manera, h2 i p, que són elements de tipus block (fan salt de 
+    línia abans i després) ,poden estar devora la imatge*/
+    float: left;
+
+    margin-right: 20px;
+}
+
+.profile h2 {
+    margin-top: 0;
+}
+
+
+/* 3. Gallery section - Grid */
+
+.gallery-section {
+    /* Dimensions */
+    width: 100%;
+
+    padding: 20px;
+}
+
+.gallery {
+    /* Dimensions */
+    width: 100%;
+
+    margin: 0 auto;
+
+    /* Alineació */
+    /* Amb grid es pot distribuir el contingut del contenidor en forma de "taula", dividint-lo
+            en files i columnes. En aquest cas, les files es van decidint a mesura que s'adapten les 
+            imatges al contenidor, mentres que les columnes estan posades de la següent manera:
+                - repeat(): Serveix per fer totes les columnes de la mateixa mida, indicant el nombre
+                de columnes desitjades i CSS s'encarrega d'assignar el mateix valor a totes.
+                
+                - auto-fit: Va al lloc del nombre de columnes. Aquesta opció fa que CSS calculi
+                automàticament quantes columnes caben a cada fila segons l'espai disponible.
+                A més, adapta la mida de les columnes per aprofitar tot l'espai del contenidor,
+                evitant que quedin espais buits quan no hi caben més imatges a la fila.
+                
+                - minmax(): Va al lloc de la mida de les columnes. Ofereix un valor mínim i màxim
+                a cada una de les columnes:
+                    - El primer valor indica la mida mínima que pot tenir cada columna.
+                    - El segon valor (1fr) indica que la columna pot créixer fins a ocupar
+                    una fracció de l'espai disponible dins el contenidor.
+                
+                - min(): Obté el valor més baix entre el 100% del contenidor i 210px. Això manté el mínim
+                de les imatges a 210px fins que l'ample del contenidor és més petit que aquesta mida. En
+                aquest segon cas, la imatge s'aniria fent més petita a mesura que la pantalla (o el contenidor)
+                es fa petita, ja ocupant tot l'ample de la taula.  */
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+    gap: 10px;
+
+    
+    max-width: 1000px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+/* 4. Footer - Flexbox */
+
+footer {
+    /* Dimensions */
+    width: 100%;
+    /* Min-height per deixar que s'expandeixi verticalment en cas d'apilar-se el contingut */
+    min-height: 60px;
+
+    /* Alineació */
+    /* Tornant a usar Flexbox amb flex-direction: row; i deixant que s'apilin els elements
+            del footer, però aquest pic usant justify-content: space-evenly; que també reparteix els
+            elements a l'eix principal (horitzontal) però deixant espais iguals entre elements i amb
+            els extrems. */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+
+    background-color: #222;
+    color: white;
+}
+
+footer div {
+    margin: 20px;
+
+    /* Detalls dels botons */
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+footer div:hover {
+    background-color: #444;
+}
