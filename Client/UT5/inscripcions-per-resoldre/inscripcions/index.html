@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ca">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Inscripcions als tallers</title>
+        <link rel="stylesheet" href="/src/estils.css" />
+    </head>
+    <body>
+        <main>
+            <h1>Inscripcions als tallers</h1>
+            <p>Simulació local: no s'envien ni es guarden dades.</p>
+            <a href="/react.html">Versió React</a>
+            <section aria-labelledby="titol-controls">
+                <h2 id="titol-controls">Explora els tallers</h2>
+                <button id="ajuda" type="button">Mostra ajuda</button>
+                <p id="missatge" role="status"></p>
+                <label for="cerca">Text per cercar</label>
+                <input id="cerca" />
+                <p id="comptador" role="status">0 caràcters</p>
+                <div id="opcions">
+                    <button type="button" data-taller="WEB">
+                        <span>Web creativa</span>
+                    </button>
+                    <button type="button" data-taller="FOTO">
+                        <span>Fotografia</span>
+                    </button>
+                </div>
+            </section>
+            <h2>Formulari</h2>
+            <form id="inscripcio">
+                <label for="nom">Nom</label>
+                <input
+                    id="nom"
+                    name="nom"
+                    required
+                    minlength="2"
+                    maxlength="60"
+                    aria-describedby="error-nom"
+                />
+                <p id="error-nom" class="error"></p>
+                <label for="correu">Correu</label>
+                <input
+                    id="correu"
+                    name="correu"
+                    type="email"
+                    required
+                    aria-describedby="error-correu"
+                />
+                <p id="error-correu" class="error"></p>
+                <label for="codi">Codi d'inscripció</label>
+                <input
+                    id="codi"
+                    name="codi"
+                    required
+                    aria-describedby="ajuda-codi error-codi"
+                />
+                <p id="ajuda-codi">Dues majúscules i quatre dígits. Exemple: AB1234.</p>
+                <p id="error-codi" class="error"></p>
+                <label for="tallerId">Taller</label>
+                <select
+                    id="tallerId"
+                    name="tallerId"
+                    required
+                    aria-describedby="error-tallerId"
+                >
+                    <option value="">Tria un taller</option>
+                    <option value="WEB">Web creativa</option>
+                    <option value="FOTO">Fotografia</option>
+                </select>
+                <p id="error-tallerId" class="error"></p>
+                <label for="modalitat">Modalitat</label>
+                <select
+                    id="modalitat"
+                    name="modalitat"
+                    aria-describedby="error-modalitat"
+                >
+                    <option value="presencial">Presencial</option>
+                    <option value="en-linia">En línia</option>
+                </select>
+                <p id="error-modalitat" class="error"></p>
+                <label for="torn">Torn (només presencial)</label>
+                <select id="torn" name="torn" aria-describedby="error-torn">
+                    <option value="">Tria un torn</option>
+                    <option value="mati">Matí</option>
+                    <option value="tarda">Tarda</option>
+                </select>
+                <p id="error-torn" class="error"></p>
+                <label>
+                    <input
+                        id="accepta"
+                        name="accepta"
+                        type="checkbox"
+                        required
+                        aria-describedby="error-accepta"
+                    />
+                    Accept les condicions
+                </label>
+                <p id="error-accepta" class="error"></p>
+                <button type="submit">Comprova la inscripció</button>
+            </form>
+            <p id="resultat" role="status"></p>
+        </main>
+        <script type="module" src="/src/app.js"></script>
+    </body>
+</html>
